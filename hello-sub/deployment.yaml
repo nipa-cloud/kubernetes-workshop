@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-sub-deployment
+  labels:
+    app: hello-sub
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-sub
+  template:
+    metadata:
+      labels:
+        app: hello-sub
+    spec:
+      containers:
+      - name: hello-sub
+        image: crccheck/hello-world
+        ports:
+        - containerPort: 8000

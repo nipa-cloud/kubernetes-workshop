@@ -1,13 +1,15 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: webapp-ingress
+  name: hello-sub-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
     - host: webapp.example.local
       http:
         paths:
-          - path: /
+          - path: /hello-world(/|$)(.*)
             backend:
-              serviceName: webapp-service
+              serviceName: hello-sub-service
               servicePort: 80
